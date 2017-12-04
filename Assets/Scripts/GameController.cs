@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 	int round = -1;
 
 	public GameObject titlePanel;
+	public GameObject instructionPanel;
 	public GameObject losePanel;
 	public GameObject winPanel;
 
@@ -95,6 +96,11 @@ public class GameController : MonoBehaviour {
 		if (titlePanel.activeSelf && Input.GetKeyDown(KeyCode.Space))
 		{
 			titlePanel.SetActive(false);
+			instructionPanel.SetActive(true);
+		}
+		else if (instructionPanel.activeSelf && Input.GetKeyDown(KeyCode.Space))
+		{
+			instructionPanel.SetActive(false);
 			Invoke("MoveNextPlateIn", 0.25f);
 		}
 

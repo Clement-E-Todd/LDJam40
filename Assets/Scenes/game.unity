@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4399795, g: 0.4884624, b: 0.56865835, a: 1}
+  m_IndirectSpecularColor: {r: 0.43997955, g: 0.48846263, b: 0.5686587, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -194,10 +194,11 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 31794688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 400, y: 300, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 403.5, y: 227, z: 0}
+  m_LocalScale: {x: 1.00875, y: 1.00875, z: 1.00875}
   m_Children:
   - {fileID: 1475325369}
+  - {fileID: 1453616113}
   - {fileID: 1142544201}
   - {fileID: 1602688684}
   - {fileID: 926743591}
@@ -236,7 +237,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 76886170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 307.7, z: 0}
+  m_LocalPosition: {x: 0, y: 185.03099, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1475325369}
@@ -244,7 +245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 6.700012}
+  m_AnchoredPosition: {x: 0, y: -41}
   m_SizeDelta: {x: 750, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &76886172
@@ -732,6 +733,7 @@ MonoBehaviour:
   - {fileID: 1119072908478742, guid: e697e899640fd9342be1f5182a78413d, type: 2}
   - {fileID: 1161585292884124, guid: 12f9bf34d71b4fa40b8f2a34591b3112, type: 2}
   titlePanel: {fileID: 1475325368}
+  instructionPanel: {fileID: 1453616112}
   losePanel: {fileID: 1142544200}
   winPanel: {fileID: 1602688683}
   timerText: {fileID: 1188288535}
@@ -1061,7 +1063,7 @@ Prefab:
     - target: {fileID: 224350655537508928, guid: 48baf3ed4addf594d9a556bf88f9ccb2,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -292
+      value: -217.03162
       objectReference: {fileID: 0}
     - target: {fileID: 224350655537508928, guid: 48baf3ed4addf594d9a556bf88f9ccb2,
         type: 2}
@@ -1091,7 +1093,7 @@ Prefab:
     - target: {fileID: 224350655537508928, guid: 48baf3ed4addf594d9a556bf88f9ccb2,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224350655537508928, guid: 48baf3ed4addf594d9a556bf88f9ccb2,
         type: 2}
@@ -1184,7 +1186,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 740778742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 278, z: 0}
+  m_LocalPosition: {x: 0, y: 203.03099, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1142544201}
@@ -1267,7 +1269,7 @@ Prefab:
     - target: {fileID: 224350655537508928, guid: 48baf3ed4addf594d9a556bf88f9ccb2,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -292
+      value: -217.03162
       objectReference: {fileID: 0}
     - target: {fileID: 224350655537508928, guid: 48baf3ed4addf594d9a556bf88f9ccb2,
         type: 2}
@@ -1297,7 +1299,7 @@ Prefab:
     - target: {fileID: 224350655537508928, guid: 48baf3ed4addf594d9a556bf88f9ccb2,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224350655537508928, guid: 48baf3ed4addf594d9a556bf88f9ccb2,
         type: 2}
@@ -1395,7 +1397,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 842304550}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 99, z: 0}
+  m_LocalPosition: {x: 0, y: -30.899998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1475325369}
@@ -1403,8 +1405,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 99}
-  m_SizeDelta: {x: 750, y: 250}
+  m_AnchoredPosition: {x: 0, y: -30.9}
+  m_SizeDelta: {x: 750, y: 34.7}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &842304552
 MonoBehaviour:
@@ -1438,12 +1440,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Granny has made her baked treats, and you must keep your hands off of them!
-
-    Use the keys shown below to maintain control of your hands by keeping the needle
-    in the center of the meter.
-
-    Press SPACE to begin!'
+  m_Text: Press SPACE to continue!
 --- !u!222 &842304553
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1600,7 +1597,7 @@ RectTransform:
   - {fileID: 740778743}
   - {fileID: 645100520}
   m_Father: {fileID: 31794692}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1665,11 +1662,11 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1188288532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 295, z: 0}
+  m_LocalPosition: {x: 0, y: 220.03099, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 31794692}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1754,7 +1751,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1214518860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 250, z: 0}
+  m_LocalPosition: {x: 0, y: 175.03099, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1602688684}
@@ -1975,6 +1972,91 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: bb17f9bc7ad58c942a8e417d74c866b1, type: 3}
   m_PrefabInternal: {fileID: 1851673496}
+--- !u!1 &1376290816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1376290817}
+  - component: {fileID: 1376290819}
+  - component: {fileID: 1376290818}
+  m_Layer: 5
+  m_Name: Body Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1376290817
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1376290816}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 184, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1453616113}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 184}
+  m_SizeDelta: {x: 750, y: 281.7}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1376290818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1376290816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.89705884, g: 0.953144, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 24
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 100
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Granny has made her delicious baked treats, and you must keep your hands
+    off of them!
+
+
+    Use the keys shown below to maintain control of your hands by keeping the needle
+    in the center of the meter.
+
+
+    LEFT HAND: [1] and [2] keys          RIGHT HAND: [9] and [0] keys
+
+
+    Press SPACE to begin!'
+--- !u!222 &1376290819
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1376290816}
 --- !u!1 &1405048974
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,6 +2101,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHand: {fileID: 206675367}
   rightHand: {fileID: 1220247759}
+--- !u!1 &1453616112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1453616113}
+  - component: {fileID: 1453616115}
+  - component: {fileID: 1453616114}
+  m_Layer: 5
+  m_Name: InstructionPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1453616113
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453616112}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.000061035156, y: -0.000015258789, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1376290817}
+  m_Father: {fileID: 31794692}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.000061035156, y: -0.000015258789}
+  m_SizeDelta: {x: 2, y: 2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1453616114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453616112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.809}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1453616115
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453616112}
 --- !u!1 &1475325368
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,7 +2282,7 @@ RectTransform:
   - {fileID: 1214518861}
   - {fileID: 427981701}
   m_Father: {fileID: 31794692}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
