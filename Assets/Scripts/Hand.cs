@@ -52,7 +52,7 @@ public class Hand : MonoBehaviour
 		// Maintain perfect control while round is not in progress
 		if (!GameController.instance.roundInProgress)
 		{
-			control = 0.5f;
+			controlRateOfChange = 0.5f - control;
 		}
 
 		// Update via temptation
