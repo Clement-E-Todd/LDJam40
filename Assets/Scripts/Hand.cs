@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Hand : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class Hand : MonoBehaviour
 
 	public Vector3 retreatDestination;
 
-	const float handMoveSpeedMax = 1f;
+	const float handMoveSpeedMax = 1.5f;
 	const float handMoveSpeedMin = -0.5f;
 
 	const float grabDelay = 0.15f;
@@ -26,7 +28,7 @@ public class Hand : MonoBehaviour
 	public MovementMode mode { get; private set; }
 
 	const float minDistanceFromOtherHand = 1.5f;
-	const float maxDistanceBeforeGrabbing = 1.1f;
+	const float maxDistanceBeforeGrabbing = 1.6f;
 
 	public float control { get; private set; }
 	float controlRateOfChange = 0f;
@@ -83,12 +85,17 @@ public class Hand : MonoBehaviour
 			case MovementMode.Wrestling:
 				if (!targetTreat)
 				{
-					GameObject[] treats = GameObject.FindGameObjectsWithTag("Treat");
-					if (treats.Length > 0)
+					if (GameController.instance.currentPlate != null)
 					{
-						targetTreat = treats[Random.Range(0, treats.Length)].transform;
+						List<Transform> treats = GameController.instance.currentPlate.treats.ToList();
+						if (treats.Count > 0)
+						{
+							targetTreat = treats[Random.Range(0, treats.Count)];
+							GameController.instance.currentPlate.treats = treats.ToArray();
+						}
 					}
-					else
+					
+					if (!targetTreat)
 					{
 						mode = MovementMode.Retreating;
 						return;
@@ -105,7 +112,7 @@ public class Hand : MonoBehaviour
 
 				if (shouldMoveTowardTreat)
 				{
-					destination = targetTreat.position + new Vector3(0, 1f, 0);
+					destination = targetTreat.position + new Vector3(0, 1.5f, 0);
 					Vector3 directionToMove = Vector3.Normalize(destination - transform.position);
 
 					float handSpeed = 0f;
@@ -126,7 +133,8 @@ public class Hand : MonoBehaviour
 					transform.position += directionToMove * Time.deltaTime * handSpeed;
 				}
 
-				if (Vector3.Distance(transform.position, targetTreat.transform.position) < maxDistanceBeforeGrabbing)
+				if (Vector3.Distance(transform.position, targetTreat.transform.position) < maxDistanceBeforeGrabbing &&
+					GameController.instance.roundInProgress)
 				{
 					mode = MovementMode.Grabbing;
 					Invoke("Retreat", grabDelay);
@@ -171,7 +179,22 @@ public class Hand : MonoBehaviour
 	private void Retreat()
 	{
 		mode = MovementMode.Retreating;
-		Destroy(targetTreat.gameObject);
-		targetTreat = null;
+		if (targetTreat)
+		{
+			Destroy(targetTreat.gameObject);
+
+			List<Transform> treats = GameController.instance.currentPlate.treats.ToList();
+			treats.Remove(targetTreat);
+			GameController.instance.currentPlate.treats = treats.ToArray();
+
+			targetTreat = null;
+		}
+
+		if (GameController.instance.currentPlate && GameController.instance.currentPlate.treats.Length == 0)
+		{
+			GameController.instance.losePanel.SetActive(true);
+			GameController.instance.timerText.text = "";
+			GameController.instance.CancelInvoke("CountDown");
+		}
 	}
 }

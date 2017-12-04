@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
 	public static GameController instance;
 	
-	Plate currentPlate;
+	public Plate currentPlate { get; private set; }
 	public GameObject[] platePrefabs;
 	int round = -1;
+
+	public GameObject titlePanel;
+	public GameObject losePanel;
+	public GameObject winPanel;
 
 	int timer = 100;
 	public Text timerText;
@@ -22,18 +27,18 @@ public class GameController : MonoBehaviour {
 	{
 		get
 		{
-			return currentPlate != null && !movingPlateIn;
+			return currentPlate != null &&
+				!movingPlateIn &&
+				!movingPlateOut &&
+				!titlePanel.activeSelf &&
+				!losePanel.activeSelf &&
+				!winPanel.activeSelf;
 		}
 	}
 
 	private void Awake()
 	{
 		instance = this;
-	}
-
-	private void Start()
-	{
-		Invoke("MoveNextPlateIn", 0.5f);
 	}
 
 	private void MoveNextPlateIn()
@@ -56,7 +61,7 @@ public class GameController : MonoBehaviour {
 		}
 		else
 		{
-			Debug.Log("TODO: Show win state");
+			winPanel.SetActive(true);
 		}
 	}
 
@@ -87,6 +92,18 @@ public class GameController : MonoBehaviour {
 
 	private void Update()
 	{
+		if (titlePanel.activeSelf && Input.GetKeyDown(KeyCode.Space))
+		{
+			titlePanel.SetActive(false);
+			Invoke("MoveNextPlateIn", 0.25f);
+		}
+
+		if ((winPanel.activeSelf || losePanel.activeSelf) && Input.GetKeyDown(KeyCode.Space))
+		{
+			Scene loadedLevel = SceneManager.GetActiveScene();
+			SceneManager.LoadScene(loadedLevel.buildIndex);
+		}
+
 		if (movingPlateIn)
 		{
 			currentPlate.transform.position += (transform.position - currentPlate.transform.position) * moveInSpeed * Time.deltaTime;
