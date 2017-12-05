@@ -80,6 +80,8 @@ public class Hand : MonoBehaviour
 		}
 
 		Vector3 destination;
+		Vector3 directionToMove;
+
 		switch (mode)
 		{
 			case MovementMode.Wrestling:
@@ -102,37 +104,36 @@ public class Hand : MonoBehaviour
 					}
 				}
 
-				bool shouldMoveTowardTreat = true;
+				// Move towards or away from the treat based on level of control
+				destination = targetTreat.position + new Vector3(0, 1.5f, 0);
+				directionToMove = Vector3.Normalize(destination - transform.position);
 
-				if (Mathf.Abs(transform.position.z) > Mathf.Abs(oppositeHand.transform.position.z) &&
+				float handSpeed = 0f;
+
+				if (GameController.instance.roundInProgress)
+				{
+					handSpeed = Mathf.Lerp(
+						Vector3.Distance(transform.position, targetTreat.position) < 3 ? handMoveSpeedMin : 0.2f,
+						handMoveSpeedMax,
+						Mathf.Abs(control - 0.5f) * 2
+					);
+				}
+				else
+				{
+					handSpeed = Vector3.Distance(transform.position, targetTreat.position) < 5 ? -1f : 0f;
+				}
+
+				transform.position += directionToMove * Time.deltaTime * handSpeed;
+
+				// If this hand is more desperate than the other and the other is too close, push it out of the way
+				if (Mathf.Abs(control - 0.5f) >= Mathf.Abs(oppositeHand.control - 0.5f) &&
 					Vector3.Distance(transform.position, oppositeHand.transform.position) < minDistanceFromOtherHand)
 				{
-					shouldMoveTowardTreat = false;
+					Vector3 pushDirection = Vector3.Normalize(oppositeHand.transform.position - transform.position);
+					oppositeHand.transform.position = transform.position + pushDirection * minDistanceFromOtherHand;
 				}
 
-				if (shouldMoveTowardTreat)
-				{
-					destination = targetTreat.position + new Vector3(0, 1.5f, 0);
-					Vector3 directionToMove = Vector3.Normalize(destination - transform.position);
-
-					float handSpeed = 0f;
-
-					if (GameController.instance.roundInProgress)
-					{
-						handSpeed = Mathf.Lerp(
-							Vector3.Distance(transform.position, targetTreat.position) < 3 ? handMoveSpeedMin : 0.2f,
-							handMoveSpeedMax,
-							Mathf.Abs(control - 0.5f) * 2
-						);
-					}
-					else
-					{
-						handSpeed = Vector3.Distance(transform.position, targetTreat.position) < 5 ? -1f : 0f;
-					}
-
-					transform.position += directionToMove * Time.deltaTime * handSpeed;
-				}
-
+				// Grab the treat once the hand gets too close!
 				if (Vector3.Distance(transform.position, targetTreat.transform.position) < maxDistanceBeforeGrabbing &&
 					GameController.instance.roundInProgress)
 				{
@@ -146,7 +147,7 @@ public class Hand : MonoBehaviour
 				destination = targetTreat.position + new Vector3(0, 0.25f, 0);
 				if (targetTreat != null && Vector3.Distance(transform.position, destination) > 0.05f)
 				{
-					Vector3 directionToMove = Vector3.Normalize(destination - transform.position);
+					directionToMove = Vector3.Normalize(destination - transform.position);
 					transform.position += directionToMove * Time.deltaTime * grabSpeed;
 				}
 				break;
@@ -154,7 +155,7 @@ public class Hand : MonoBehaviour
 			case MovementMode.Retreating:
 				if (Vector3.Distance(transform.position, retreatDestination) > 0.05f)
 				{
-					Vector3 directionToMove = Vector3.Normalize(retreatDestination - transform.position);
+					directionToMove = Vector3.Normalize(retreatDestination - transform.position);
 					transform.position += directionToMove * Time.deltaTime * retreatSpeed;
 				}
 				else if (GameObject.FindGameObjectsWithTag("Treat").Length > 0)
