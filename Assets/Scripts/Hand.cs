@@ -79,8 +79,8 @@ public class Hand : MonoBehaviour
 			mode = MovementMode.Wrestling;
 		}
 
-		Vector3 destination;
-		Vector3 directionToMove;
+		Vector3 destination = Vector3.zero;
+		Vector3 directionToMove = Vector3.forward;
 
 		switch (mode)
 		{
@@ -105,9 +105,6 @@ public class Hand : MonoBehaviour
 				}
 
 				// Move towards or away from the treat based on level of control
-				destination = targetTreat.position + new Vector3(0, 1.5f, 0);
-				directionToMove = Vector3.Normalize(destination - transform.position);
-
 				float handSpeed = 0f;
 
 				if (GameController.instance.roundInProgress)
@@ -117,12 +114,24 @@ public class Hand : MonoBehaviour
 						handMoveSpeedMax,
 						Mathf.Abs(control - 0.5f) * 2
 					);
+
+					if (handSpeed > 0f)
+					{
+						destination = targetTreat.position + new Vector3(0, 1.5f, 0);
+					}
+					else
+					{
+						handSpeed *= -1f;
+						destination = retreatDestination;
+					}
 				}
 				else
 				{
-					handSpeed = Vector3.Distance(transform.position, targetTreat.position) < 5 ? -1f : 0f;
+					handSpeed = Vector3.Distance(transform.position, targetTreat.position) < 5 ? 1f : 0f;
+					destination = retreatDestination;
 				}
 
+				directionToMove = Vector3.Normalize(destination - transform.position);
 				transform.position += directionToMove * Time.deltaTime * handSpeed;
 
 				// If this hand is more desperate than the other and the other is too close, push it out of the way
