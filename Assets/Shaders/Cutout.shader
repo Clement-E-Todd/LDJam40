@@ -3,6 +3,7 @@
         _LightColor("Light Color", Color) = (0.75,0.75,0.75,1)
         _DarkColor("Dark Color", Color) = (0.25,0.25,0.25,1)
         _Squeeze("Squeeze Gradient", Range(0,1)) = 0.1
+        _Offset("Gradient Offset", Vector) = (0,0,0,0)
     }
 
     SubShader{
@@ -22,6 +23,7 @@
             float4 _LightColor;
             float4 _DarkColor;
             float _Squeeze;
+            float4 _Offset;
 
             struct VertexParams {
                 float4 objectPosition : POSITION;
@@ -30,7 +32,7 @@
             struct FragmentParams {
                 float4 clipPosition : SV_POSITION;
                 float3 worldPosition : TEXCOORD0;
-                float3 meshWorldPosition : TEXCOORD1;
+                float3 gradientWorldPosition : TEXCOORD1;
             };
 
             FragmentParams VertexProgram(VertexParams input) {
@@ -38,7 +40,7 @@
 
                 output.clipPosition = UnityObjectToClipPos(input.objectPosition);
                 output.worldPosition = mul(unity_ObjectToWorld, input.objectPosition);
-                output.meshWorldPosition = mul(unity_ObjectToWorld, float4(0,0,0,1));
+                output.gradientWorldPosition = mul(unity_ObjectToWorld, _Offset);
 
                 return output;
             }
@@ -49,7 +51,7 @@
 
                 float cameraDistance = distance(_WorldSpaceCameraPos, input.worldPosition);
                 float3 cameraToFragDir = normalize(_WorldSpaceCameraPos - input.worldPosition);
-                float3 cameraToMeshDir = normalize(_WorldSpaceCameraPos - input.meshWorldPosition);
+                float3 cameraToMeshDir = normalize(_WorldSpaceCameraPos - input.gradientWorldPosition);
                 float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz);
                 
                 // Calculate how well-lit the mesh is from the camera's perspective (0 to 1)
